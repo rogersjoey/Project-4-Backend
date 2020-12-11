@@ -14,6 +14,18 @@ module.exports = {
       stockId: {
         type: Sequelize.INTEGER
       },
+      initialValue: {
+        type: Sequelize.DECIMAL
+      },
+      finalValue: {
+        type: Sequelize.DECIMAL
+      },
+      amountInvested: {
+        type: Sequelize.DECIMAL
+      },
+      growth: {
+        type: Sequelize.DECIMAL
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

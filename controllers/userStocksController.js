@@ -3,7 +3,7 @@ const router = express.Router();
 
 const UserModel = require("../models").User;
 const StockModel = require("../models").Stock;
-const UserStockModel = require("../models").UserStock;
+const UserStockModel = require("../models").UserStocks;
 
 
 // CREATE A NEW User-Stock Connection
@@ -13,7 +13,11 @@ router.post("/profile/:id", async (req, res) => {
     });
     let UserStock = await UserStockModel.create({
         userId: req.params.id,
-        stockId: newStock[0].id
+        stockId: newStock[0].id,
+        initialValue: newStock[0].currentValue,
+        finalValue: newStock[0].currentValue,
+        amountInvested: req.body.amountInvested,
+        growth: 1
     });
     res.json({ UserStock});
   });
@@ -29,7 +33,7 @@ router.get("/profile/:id", async (req, res) => {
     for(i=0; i<connections.length; i++){
         let stockid = await StockModel.findByPk(connections[i].stockId)
         if(stockid != null){
-            stocks.push(stockid)
+          stocks.push(stockid)
         }
     }
     res.json({stocks});
@@ -48,6 +52,17 @@ router.delete("/profile/:id", async (req, res) => {
     });
   });
 
+// UPDATE END VALUE OF STOCK AND GROWTH
+router.put("/profile/:id", async(req,res) =>{
+  let userStock = await UserStockModel.update(req.body,{
+    where: {
+      id: req.params.id,
+      stockId: req.body.stockId
+    },
+    returning:true
+  });
+  res.json({ userStock});
+})
 
 
 module.exports = router;

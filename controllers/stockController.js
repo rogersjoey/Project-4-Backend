@@ -28,5 +28,13 @@ router.delete("/:id", async (req, res) => {
     });
   });
 
+// UPDATE STOCK VALUE
+router.put("/:id", async(req,res) =>{
+  let stock = await StockModel.update(req.body,{
+    where: {id: req.params.id},
+    returning:true
+  });
+  res.json({ stock});
+})
 
 module.exports = router;

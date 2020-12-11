@@ -14,7 +14,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Stock.init({
-    ticker: DataTypes.STRING
+    ticker: DataTypes.STRING,
+    currentValue: DataTypes.DECIMAL
   }, {
     sequelize,
     modelName: 'Stock',

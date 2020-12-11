@@ -11,6 +11,9 @@ module.exports = {
       ticker: {
         type: Sequelize.STRING
       },
+      currentValue: {
+        type: Sequelize.DECIMAL(10,2)
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
