@@ -48,7 +48,7 @@ router.delete("/profile/:id", async (req, res) => {
         }
     });
     res.json({
-      message: `Stock Connection with id ${req.params.id} was deleted`
+      message: `Stock Connection with id ${req.body.stockId} was deleted`
     });
   });
 
@@ -56,7 +56,7 @@ router.delete("/profile/:id", async (req, res) => {
 router.put("/profile/:id", async(req,res) =>{
   let userStock = await UserStockModel.update(req.body,{
     where: {
-      id: req.params.id,
+      userId: req.params.id,
       stockId: req.body.stockId
     },
     returning:true
