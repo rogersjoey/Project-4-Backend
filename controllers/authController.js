@@ -43,7 +43,7 @@ router.post("/signup", (req, res) => {
             });
         });
       });
-bvn});
+});
 
 // POST LOGIN
 router.post("/login", (req, res) => {

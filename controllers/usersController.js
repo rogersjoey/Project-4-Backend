@@ -7,13 +7,35 @@ const UserStockModel = require("../models").UserStock;
 
 // GET USERS PROFILE
 router.get("/profile/:id", async (req, res) => {
-  let user = await UserModel.findByPk(req.params.id);
+  let user = await UserModel.findByPk(req.params.id, {
+    include: [{
+      model: StockModel,
+      as: 'stocks',
+      required: false,
+      attributes:['ticker','currentValue','createdAt','updatedAt'],
+      through: {
+        model:UserStockModel,
+        as: 'userStocks',
+        // attributes:['initialValue','amountInversted','growth']
+      }
+    }]});
   res.json({ user });
 });
 
 // GET ALLL USERS PROFILES
 router.get("/", async (req, res) => {
-  let allUsers = await UserModel.findAll();
+  let allUsers = await UserModel.findAll({
+    include: [{
+      model: StockModel,
+      as: 'stocks',
+      required: false,
+      attributes:['ticker','currentValue','createdAt','updatedAt'],
+      through: {
+        model:UserStockModel,
+        as: 'userStocks',
+        // attributes:['initialValue','amountInversted','growth']
+      }
+    }]});
   res.json({ allUsers });
 });
 
