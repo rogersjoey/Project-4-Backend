@@ -25,7 +25,7 @@ router.get("/profile/:id", async (req, res) => {
 router.get("/", async (req, res) => {
   let allUsers = await UserModel.findAll({
     order: [
-      ["growth", "ASC"],
+      ["monthlyGrowth", "ASC"],
     ],
     include: [{
       model: StockModel,

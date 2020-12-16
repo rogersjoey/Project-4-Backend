@@ -45,11 +45,12 @@ router.get("/profile/:id", async (req, res) => {
 
 // DELETE A USER STOCK CONNECTION
 router.delete("/profile/:id", async (req, res) => {
-    await UserStockModel.destroy({
+    await UserStockModel.destroy(req.body,{
       where: {
           userId: req.params.id,
           stockId: req.body.stockId
-        }
+      },
+      returning: true
     });
     res.json({
       message: `Stock Connection with id ${req.body.stockId} was deleted`
