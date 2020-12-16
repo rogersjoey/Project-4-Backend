@@ -16,7 +16,6 @@ router.get("/profile/:id", async (req, res) => {
       through: {
         model:UserStockModel,
         as: 'userStocks',
-        // attributes:['initialValue','amountInversted','growth']
       }
     }]});
   res.json({ user });
@@ -25,6 +24,9 @@ router.get("/profile/:id", async (req, res) => {
 // GET ALLL USERS PROFILES
 router.get("/", async (req, res) => {
   let allUsers = await UserModel.findAll({
+    order: [
+      ["growth", "ASC"],
+    ],
     include: [{
       model: StockModel,
       as: 'stocks',
@@ -33,9 +35,9 @@ router.get("/", async (req, res) => {
       through: {
         model:UserStockModel,
         as: 'userStocks',
-        // attributes:['initialValue','amountInversted','growth']
       }
-    }]});
+    }],
+  });
   res.json({ allUsers });
 });
 

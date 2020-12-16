@@ -11,11 +11,15 @@ router.post("/profile/:id", async (req, res) => {
     let newStock = await StockModel.findOrCreate({
         where: {ticker: req.body.ticker},
     });
+    await StockModel.update(req.body,{
+      where: {id: newStock[0].id},
+      returning:true
+    });
     let UserStock = await UserStockModel.create({
         userId: req.params.id,
         stockId: newStock[0].id,
-        initialValue: newStock[0].currentValue,
-        finalValue: newStock[0].currentValue,
+        initialValue: req.body.currentValue,
+        finalValue: req.body.currentValue,
         amountInvested: req.body.amountInvested,
         growth: 1
     });
