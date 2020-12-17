@@ -4,6 +4,7 @@ const app = express();
 const methodOverride = require("method-override");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
+const bodyParser = require('body-parser')
 const cors = require("cors");
 const createError = require("http-errors");
 
@@ -25,6 +26,7 @@ const verifyToken = (req, res, next) => {
 };
 app.use(cors());
 app.use(cookieParser());
+app.use(bodyParser.json())
 app.use(express.json());
 app.use(methodOverride("_method"));
 

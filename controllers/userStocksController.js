@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
+
 const UserModel = require("../models").User;
 const StockModel = require("../models").Stock;
 const UserStockModel = require("../models").UserStocks;
@@ -45,12 +46,13 @@ router.get("/profile/:id", async (req, res) => {
 
 // DELETE A USER STOCK CONNECTION
 router.delete("/profile/:id", async (req, res) => {
-    await UserStockModel.destroy(req.body,{
+    console.log(req.body)
+    await UserStockModel.destroy({
       where: {
           userId: req.params.id,
-          stockId: req.body.stockId
+          stockId: req.body.stockId,
       },
-      returning: true
+      // returning: true
     });
     res.json({
       message: `Stock Connection with id ${req.body.stockId} was deleted`
