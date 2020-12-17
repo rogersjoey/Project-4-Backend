@@ -1,4 +1,4 @@
-# Project 4 Front End
+# Project 4 Back End
 
 Stonks vs. Stinks is an online game where users compete by selecting which stocks they think will perform the best in the coming month and try to be crowned a stock genius!
 
