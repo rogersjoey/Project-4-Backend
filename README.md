@@ -34,3 +34,4 @@ The user-stock table will be used to connect each users to the stocks that they 
 ## ERD
 The connection between the User and the Stocks will be many-to-many. As each user will be able to chose multiple different stocks to have in their portfolio and the same stock can be in multiple different peoples portfolio. Each connection will also have a different date and allocated capital to it that will be recorded in the User-Stock table. This stock picks can be deleted and updated in the future. 
 ### Diagram
+![Stock Selection](./images/Project4ERDFull.png)
